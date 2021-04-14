@@ -8,7 +8,6 @@ class PostUsers extends React.Component {
   }
 
   render() {
-    console.log(this.props.users);
     return (
       <div>
         <h2>List of Users</h2>
@@ -22,12 +21,16 @@ class PostUsers extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Test</td>
-              <td>test@example.com</td>
-              <td>Test City</td>
-              <td>Test Company</td>
-            </tr>
+            {this.props.users.map((user) => {
+              return (
+                <tr key={user.id}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.address.city}</td>
+                  <td>{user.company.name}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
