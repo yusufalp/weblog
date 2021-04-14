@@ -29,3 +29,8 @@ th {
 label {
   margin-right: 12px;
 }
+
+.attention {
+  font-size: 11px;
+  color: #72195a;
+}
