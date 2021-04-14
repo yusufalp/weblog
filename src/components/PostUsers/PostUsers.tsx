@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../actions";
+import { Link } from "react-router-dom";
 
 interface Props {
   fetchUsers: Function;
@@ -18,7 +19,7 @@ const PostUsers: React.FC<Props> = (props) => {
 
   useEffect(() => {
     props.fetchUsers();
-  }, []);
+  });
 
   return (
     <div>
@@ -46,7 +47,9 @@ const PostUsers: React.FC<Props> = (props) => {
             .map((user) => {
               return (
                 <tr key={user.id}>
-                  <td>{user.name}</td>
+                  <td>
+                    <Link to={`users/${user.id}`}>{user.name}</Link>
+                  </td>
                   <td>{user.email}</td>
                   <td>{user.address.city}</td>
                   <td>{user.company.name}</td>
