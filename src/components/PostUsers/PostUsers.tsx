@@ -29,7 +29,8 @@ const PostUsers: React.FC<Props> = (props) => {
         name="search"
         id="search"
         onChange={(e) => setSearchValue(e.target.value)}
-      />
+      />{" "}
+      <span className="attention">(Case Sensitive)</span>
       <table>
         <thead>
           <tr>
