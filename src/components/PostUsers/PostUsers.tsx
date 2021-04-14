@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../actions";
 
@@ -14,6 +14,8 @@ interface Props {
 }
 
 const PostUsers: React.FC<Props> = (props) => {
+  const [searchValue, setSearchValue] = useState("");
+
   useEffect(() => {
     props.fetchUsers();
   }, []);
@@ -22,7 +24,12 @@ const PostUsers: React.FC<Props> = (props) => {
     <div>
       <h2>List of Users</h2>
       <label htmlFor="search">Search Name:</label>
-      <input type="text" name="search" id="search" />
+      <input
+        type="text"
+        name="search"
+        id="search"
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
       <table>
         <thead>
           <tr>
@@ -33,16 +40,18 @@ const PostUsers: React.FC<Props> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.users.map((user) => {
-            return (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.address.city}</td>
-                <td>{user.company.name}</td>
-              </tr>
-            );
-          })}
+          {props.users
+            .filter((filteredUsers) => filteredUsers.name.includes(searchValue))
+            .map((user) => {
+              return (
+                <tr key={user.id}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.address.city}</td>
+                  <td>{user.company.name}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>
