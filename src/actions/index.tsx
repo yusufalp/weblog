@@ -12,11 +12,11 @@ export const fetchUsers = () => {
   };
 };
 
-export const fetchUserPosts = () => {
+export const fetchUserPosts = (id) => {
   return async (dispatch) => {
     const response = await axios
       .create({ baseURL: "https://jsonplaceholder.typicode.com/" })
-      .get("posts?userId=1");
+      .get(`posts?userId=${id}`);
 
     dispatch({ type: "FETCH_USER", payload: response.data });
   };
