@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchUserPosts } from "../../actions";
 
-const User: React.FC = () => {
+interface Props {
+  fetchUserPosts: Function;
+  userPosts: { title: string; body: string; id: number }[];
+  match: { params: { id: number } };
+}
+
+const User: React.FC<Props> = (props) => {
+  useEffect(() => {
+    props.fetchUserPosts(props.match.params.id);
+  });
+
   return (
     <div>
-      <h2>User: </h2>
       <table>
         <thead>
           <tr>
@@ -12,14 +23,24 @@ const User: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Title 1</td>
-            <td>Body 1</td>
-          </tr>
+          {props.userPosts.map((userPost) => {
+            return (
+              <tr key={userPost.id}>
+                <td>{userPost.title}</td>
+                <td>{userPost.body}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
   );
 };
 
-export default User;
+const mapStateToProps = (state) => {
+  return { userPosts: state.userPosts };
+};
+
+export default connect(mapStateToProps, { fetchUserPosts: fetchUserPosts })(
+  User
+);
