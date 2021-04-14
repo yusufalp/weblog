@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../actions";
 
@@ -13,41 +13,41 @@ interface Props {
   }[];
 }
 
-class PostUsers extends React.Component<Props> {
-  componentDidMount() {
-    this.props.fetchUsers();
-  }
+const PostUsers: React.FC<Props> = (props) => {
+  useEffect(() => {
+    props.fetchUsers();
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <h2>List of Users</h2>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">City</th>
-              <th scope="col">Company</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.users.map((user) => {
-              return (
-                <tr key={user.id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.address.city}</td>
-                  <td>{user.company.name}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h2>List of Users</h2>
+      <label htmlFor="search">Search Name:</label>
+      <input type="text" name="search" id="search" />
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">City</th>
+            <th scope="col">Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.users.map((user) => {
+            return (
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.address.city}</td>
+                <td>{user.company.name}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return { users: state.users };
