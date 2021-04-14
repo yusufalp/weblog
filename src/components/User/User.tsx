@@ -1,20 +1,31 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchUserPosts } from "../../actions";
+import { fetchUserPosts, fetchUsers } from "../../actions";
 
 interface Props {
   fetchUserPosts: Function;
+  fetchUsers: Function;
   userPosts: { title: string; body: string; id: number }[];
   match: { params: { id: number } };
+  users: {
+    id: number;
+    name: string;
+  }[];
 }
 
 const User: React.FC<Props> = (props) => {
   useEffect(() => {
     props.fetchUserPosts(props.match.params.id);
-  });
+    props.fetchUsers();
+  }, []);
+
+  let postsOwner = props.users.find(
+    (user) => user.id === Number(props.match.params.id)
+  );
 
   return (
     <div>
+      {postsOwner && <h2>{postsOwner.name}'s posts</h2>}
       <table>
         <thead>
           <tr>
@@ -38,9 +49,10 @@ const User: React.FC<Props> = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { userPosts: state.userPosts };
+  return { userPosts: state.userPosts, users: state.users };
 };
 
-export default connect(mapStateToProps, { fetchUserPosts: fetchUserPosts })(
-  User
-);
+export default connect(mapStateToProps, {
+  fetchUserPosts,
+  fetchUsers,
+})(User);
