@@ -12,7 +12,7 @@ export const fetchUsers = () => {
   };
 };
 
-export const fetchUser = () => {
+export const fetchUserPosts = () => {
   return async (dispatch) => {
     const response = await axios
       .create({ baseURL: "https://jsonplaceholder.typicode.com/" })
