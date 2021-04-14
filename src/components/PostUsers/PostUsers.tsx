@@ -2,7 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../actions";
 
-class PostUsers extends React.Component {
+interface Props {
+  fetchUsers: Function;
+  users: {
+    id: number;
+    name: string;
+    email: string;
+    address: { city: string };
+    company: { name: string };
+  }[];
+}
+
+class PostUsers extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchUsers();
   }
