@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../actions";
 import { Link } from "react-router-dom";
 
 interface Props {
-  fetchUsers: Function;
+  fetchUsers(): void;
   users: {
     id: number;
     name: string;
@@ -14,7 +14,7 @@ interface Props {
   }[];
 }
 
-const PostUsers: React.FC<Props> = (props) => {
+const UserList: React.FC<Props> = (props) => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
@@ -29,7 +29,9 @@ const PostUsers: React.FC<Props> = (props) => {
         type="text"
         name="search"
         id="search"
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setSearchValue(e.target.value)
+        }
       />{" "}
       <span className="attention">(Case Sensitive)</span>
       <table>
@@ -66,4 +68,4 @@ const mapStateToProps = (state) => {
   return { users: state.users };
 };
 
-export default connect(mapStateToProps, { fetchUsers })(PostUsers);
+export default connect(mapStateToProps, { fetchUsers })(UserList);
