@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchUserPosts, fetchUsers } from "../../actions";
 
-interface Props {
-  fetchUserPosts: Function;
-  fetchUsers: Function;
+interface UserProps {
+  fetchUserPosts(id: number): void;
+  fetchUsers(): void;
   userPosts: { title: string; body: string; id: number }[];
   match: { params: { id: number } };
   users: {
@@ -13,7 +13,7 @@ interface Props {
   }[];
 }
 
-const User: React.FC<Props> = (props) => {
+const User: React.FC<UserProps> = (props) => {
   useEffect(() => {
     props.fetchUserPosts(props.match.params.id);
     props.fetchUsers();

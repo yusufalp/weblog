@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchUsers } from "../../actions";
 import { Link } from "react-router-dom";
 
-interface Props {
+interface UserListProps {
   fetchUsers(): void;
   users: {
     id: number;
@@ -14,12 +14,16 @@ interface Props {
   }[];
 }
 
-const UserList: React.FC<Props> = (props) => {
+const UserList: React.FC<UserListProps> = (props) => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     props.fetchUsers();
   });
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
 
   return (
     <div>
@@ -29,9 +33,7 @@ const UserList: React.FC<Props> = (props) => {
         type="text"
         name="search"
         id="search"
-        onChange={(e: ChangeEvent<HTMLInputElement>) =>
-          setSearchValue(e.target.value)
-        }
+        onChange={handleInputChange}
       />{" "}
       <span className="attention">(Case Sensitive)</span>
       <table>
