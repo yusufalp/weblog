@@ -18,6 +18,6 @@ export const fetchUserPosts = (id) => {
       .create({ baseURL: "https://jsonplaceholder.typicode.com/" })
       .get(`posts?userId=${id}`);
 
-    dispatch({ type: "FETCH_USER", payload: response.data });
+    dispatch({ type: "FETCH_USER_POSTS", payload: response.data });
   };
 };
