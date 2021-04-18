@@ -4,7 +4,7 @@ import { fetchUsers } from "../../actions";
 import { Link } from "react-router-dom";
 
 interface UserListProps {
-  fetchUsers(): void;
+  fetchUsers: () => void;
   users: {
     id: number;
     name: string;
@@ -15,7 +15,7 @@ interface UserListProps {
 }
 
 const UserList: React.FC<UserListProps> = (props) => {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<string>("");
 
   useEffect(() => {
     props.fetchUsers();
@@ -34,8 +34,7 @@ const UserList: React.FC<UserListProps> = (props) => {
         name="search"
         id="search"
         onChange={handleInputChange}
-      />{" "}
-      <span className="attention">(Case Sensitive)</span>
+      />
       <table>
         <thead>
           <tr>
@@ -47,7 +46,11 @@ const UserList: React.FC<UserListProps> = (props) => {
         </thead>
         <tbody>
           {props.users
-            .filter((filteredUsers) => filteredUsers.name.includes(searchValue))
+            .filter((filteredUsers) =>
+              filteredUsers.name
+                .toLowerCase()
+                .includes(searchValue.toLowerCase())
+            )
             .map((user) => {
               return (
                 <tr key={user.id}>
