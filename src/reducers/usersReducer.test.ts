@@ -1,4 +1,5 @@
 import usersReducer from "./usersReducer";
+import { FETCH_USERS } from "../actions/types";
 
 describe("User list Reducer", () => {
   it("returns default state", () => {
@@ -31,7 +32,7 @@ describe("User list Reducer", () => {
       },
     ];
     const newState = usersReducer(undefined, {
-      type: "FETCH_USERS",
+      type: FETCH_USERS,
       payload: users,
     });
     expect(newState).toEqual(users);
