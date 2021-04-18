@@ -12,9 +12,10 @@ interface FetchUsers {
   }[];
 }
 
-interface fetchUserPosts {
+interface FetchUserPosts {
   type: typeof FETCH_USER_POSTS;
   payload: { title: string; body: string; id: number }[];
 }
 
-export type DispatchTypes = FetchUsers | fetchUserPosts;
+export type FetchUsersType = FetchUsers;
+export type FetchUserPostsType = FetchUserPosts;
