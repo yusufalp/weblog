@@ -5,11 +5,7 @@ import UserList from "./UserList";
 import { render, fireEvent } from "@testing-library/react";
 
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import reducers from "../../reducers";
-import thunk from "redux-thunk";
-
-const store = createStore(reducers, applyMiddleware(thunk));
+import store from "../../Store";
 
 describe("Search input test", () => {
   it("renders component correctly", () => {
