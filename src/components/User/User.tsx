@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { RouteProps } from "react-router";
 import { connect } from "react-redux";
-import { fetchUserPosts, fetchUsers } from "../../actions";
+import { fetchUserPosts } from "../../actions";
 
 interface UserProps {
   fetchUserPosts: (id: number) => void;
@@ -48,5 +48,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   fetchUserPosts,
-  fetchUsers,
 })(User);
