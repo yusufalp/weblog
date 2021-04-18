@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { fetchUserPosts, fetchUsers } from "../../actions";
 
 interface UserProps {
-  fetchUserPosts(id: number): void;
-  fetchUsers(): void;
+  fetchUserPosts: (id: number) => void;
+  fetchUsers: () => void;
   userPosts: { title: string; body: string; id: number }[];
   match: { params: { id: number } };
   users: {
