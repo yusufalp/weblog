@@ -1,4 +1,4 @@
-import { FETCH_USERS, DispatchTypes } from "../actions/types";
+import { FETCH_USERS, FetchUsersType } from "../actions/types";
 
 interface Users {
   id: number;
@@ -9,7 +9,7 @@ type usersReducerDefaultState = Users[];
 
 const usersReducer = (
   state: usersReducerDefaultState = [],
-  action: DispatchTypes
+  action: FetchUsersType
 ) => {
   switch (action.type) {
     case FETCH_USERS:

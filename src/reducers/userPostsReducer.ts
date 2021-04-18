@@ -1,4 +1,4 @@
-import { FETCH_USER_POSTS, DispatchTypes } from "../actions/types";
+import { FETCH_USER_POSTS, FetchUserPostsType } from "../actions/types";
 
 interface UserPost {
   title: string;
@@ -10,7 +10,7 @@ type userPostsReducerDefaultState = UserPost[];
 
 const userPostsReducer = (
   state: userPostsReducerDefaultState = [],
-  action: DispatchTypes
+  action: FetchUserPostsType
 ) => {
   switch (action.type) {
     case FETCH_USER_POSTS:
