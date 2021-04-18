@@ -2,13 +2,10 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import reducers from "./reducers";
-import thunk from "redux-thunk";
+import store from "./Store";
 
-const store = createStore(reducers, applyMiddleware(thunk));
+import { MemoryRouter } from "react-router-dom";
 
 test("renders learn react link", () => {
   render(
