@@ -7,7 +7,7 @@ import { render, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "../../Store";
 
-describe("Search input test", () => {
+describe("User List component", () => {
   it("renders component correctly", () => {
     let container: HTMLDivElement;
     container = document.createElement("div");
