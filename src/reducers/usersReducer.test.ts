@@ -10,21 +10,21 @@ describe("User list Reducer", () => {
   it("returns a new state if received a valid action type", () => {
     const users = [
       {
-        id: "id 1",
+        id: 1,
         name: "name 1",
         email: "test1@example.com",
         address: { city: "city 1" },
         company: { name: "company 1" },
       },
       {
-        id: "id 2",
+        id: 2,
         name: "name 2",
         email: "test2@example.com",
         address: { city: "city 2" },
         company: { name: "company 2" },
       },
       {
-        id: "id 3",
+        id: 3,
         name: "name 3",
         email: "test3@example.com",
         address: { city: "city 3" },
