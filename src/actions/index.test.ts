@@ -22,7 +22,7 @@ describe("async actions", () => {
   });
 
   it("fetches single user posts", () => {
-    mockAxios.get("/users");
+    mockAxios.get("posts?userId=1");
 
     const store = mockStore({ posts: [] });
 
